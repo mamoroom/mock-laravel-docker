@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web-server:
+    container_name: "web-server"
+    build: .docker/web-server
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html/mock-laravel-docker
+    ports:
+      - "80:80"
+    #command: "/usr/sbin/init"
+    command: >
+      bash -c "composer install
+      && php artisan migrate
+      && /usr/sbin/httpd -D FOREGROUND"
+  db:
+    container_name: "db"
+    image: mysql:5.7.22
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.docker/db/data:/var/lib/mysql
+    env_file: .docker/db/.env
+    user: "1000:50"
+    command: --innodb-use-native-aio=0
