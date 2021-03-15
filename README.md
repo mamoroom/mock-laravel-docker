@@ -17,3 +17,5 @@ COMPOSE_FILE=docker-compose.local.yml docker-compose up --build
 ```shell
 docker-compose run web-server php artisan db:seed
 ```
+
+## こいつを消す
