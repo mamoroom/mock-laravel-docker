@@ -1,5 +1,4 @@
 # Laravel Mock Project on Docker
-laravel mock
 
 ## Installation
 ```shell
